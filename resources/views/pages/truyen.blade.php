@@ -15,12 +15,12 @@
             </div>
             <div class="col-md-9">
                 <ul style="list-style: none;">
-                    <li>Tác giả: Lương Văn Hòa</li>
+                    <li>Tác giả: {{$truyen->tacgia}}</li>
                     <li>Thể loại: Trinh thám</li>
                     <li>Số chapter: 200</li>
                     <li>Só lượt xem: 20000000000</li>
                     <li><a href="#">Xem mục lục</a></li>
-                    <li><a href="#" class="btn btn-primary">Đọc online</a></li>
+                    <li><a href="{{url('xem-chapter/'.$chapter_dau)}}" class="btn btn-primary">Đọc online</a></li>
                 </ul>
             </div>
         </div>
@@ -30,29 +30,39 @@
         <hr>
         <h4>Mục lục</h4>
         <ul>
-            <li><a href="#">Chương 1: </a></li>
-            <li><a href="#">Chương 1: </a></li>
-            <li><a href="#">Chương 1: </a></li>
-            <li><a href="#">Chương 1: </a></li>
-            <li><a href="#">Chương 1: </a></li>
-            <li><a href="#">Chương 1: </a></li>
-            <li><a href="#">Chương 1: </a></li>
+            @php
+            $mucluc = count($chapter);
+            @endphp
+            @if($mucluc > 0)
+                @foreach ($chapter as $key => $chap)
+                <li><a href="{{url('xem_chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</a></li>
+                @endforeach
+            @else
+            <li>Muc luc dang cap nhat</li>
+            @endif
+
         </ul>
         <hr>
         <h4>Truyện cùng danh mục</h4>
         <div class="row">
+            @foreach($cungdanhmuc as $key=>$truyen)
             <div class="col-md-4">
-                <img src="{{asset('uploads/truyen/di-gioi-kham-liem-su3.jpg')}}" class="img-fluid" alt="">
-                <h4>Dị giới khâm liệm sư</h4>
+                <div class="card">
+                    <img src="{{asset('uploads/truyen/'.$truyen->hinhanh)}}" class="card-img-top" width="250px" height="333px" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title">{{$truyen->tentruyen}}</h4>
+                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{url('doc-truyen/'.$truyen->slug_truyen)}}" class="btn btn-sm btn-primary">Đọc ngay</a>
+                                <a class="btn btn-sm btn-outline-secondary"><i class="fas fa-eye"></i> 5555</a>
+                            </div>
+                            <small class="text-muted">9 mins trước</small>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <img src="{{asset('uploads/truyen/di-gioi-kham-liem-su3.jpg')}}" class="img-fluid" alt="">
-                <h4>Dị giới khâm liệm sư</h4>
-            </div>
-            <div class="col-md-4">
-                <img src="{{asset('uploads/truyen/di-gioi-kham-liem-su3.jpg')}}" class="img-fluid" alt="">
-                <h4>Dị giới khâm liệm sư</h4>
-            </div>
+            @endforeach
         </div>
 
     </div>

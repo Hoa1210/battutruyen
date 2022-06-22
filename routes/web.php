@@ -24,7 +24,9 @@ Route::get('/', [IndexContronller::class, 'home']);
 
 Route::get('/danh-muc/{slug}', [IndexContronller::class, 'danhmuc']);
 
-Route::get('/doc-truyen/{id}', [IndexContronller::class, 'doctruyen']);
+Route::get('/doc-truyen/{slug}', [IndexContronller::class, 'doctruyen']);
+
+Route::get('/xem-chapter/{slug}', [IndexContronller::class, 'xemchapter']);
 
 
 Auth::routes();

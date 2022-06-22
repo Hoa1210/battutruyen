@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Chapter;
 use Illuminate\Http\Request;
 use App\Models\DanhmucTruyen;
 use App\Models\Truyen;
@@ -20,9 +21,14 @@ class IndexContronller extends Controller
         // dd($truyen);
         return view('pages.danhmuc')->with(compact('danhmuc','truyen'));
     }
-    public function doctruyen($id){
+    public function doctruyen($slug){
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
-        return view('pages.chapter')->with(compact('danhmuc'));
+        $truyen = Truyen::with('danhmuctruyen')->where('slug_truyen',$slug)->where('trangthai',0)->first();
+        $chapter  = Chapter::with('truyen')->orderBy('id','DESC')->where('truyen_id',$truyen->id)->get();
+        $chapter_dau  = Chapter::with('truyen')->orderBy('id','DESC')->where('truyen_id',$truyen->id)->first();
+       
+        $cungdanhmuc = Truyen::with('danhmuctruyen')->where('danhmuc_id',$truyen->danhmuctruyen->id)->whereNotIn('id',[$truyen->id])->get();
+        return view('pages.truyen')->with(compact('danhmuc','truyen','chapter','chapter_dau','cungdanhmuc'));
     }
 
 }

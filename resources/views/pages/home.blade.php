@@ -19,7 +19,7 @@
                         <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="{{url('doc-truyen/'.$truyen->id)}}" class="btn btn-sm btn-primary">Đọc ngay</a>
+                                <a href="{{url('doc-truyen/'.$truyen->slug_truyen)}}" class="btn btn-sm btn-primary">Đọc ngay</a>
                                 <a class="btn btn-sm btn-outline-secondary"><i class="fas fa-eye"></i> 5555</a>
                             </div>
                             <small class="text-muted">9 mins trước</small>
