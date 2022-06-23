@@ -15,9 +15,9 @@
         <div class="col-md-5">
             <div class="form-group">
                 <label for="exampleInputEmail1">Chon chuong</label>
-                <select name="trangthai" class="custom-select">
+                <select name="select-chapter" class="custom-select select-chapter">
                     @foreach($all_chapter as $key=>$chap)
-                    <option value="0">{{$chap->tieude}}</option>
+                    <option  value="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</option>
                     @endforeach
                 </select>
             </div>

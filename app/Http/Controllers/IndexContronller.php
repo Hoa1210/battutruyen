@@ -35,7 +35,7 @@ class IndexContronller extends Controller
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
         $truyen = Chapter::where('slug_chapter',$slug)->first();
         $chapter = Chapter::with('truyen')->where('slug_chapter',$slug)->where('truyen_id',$truyen->truyen_id)->first();
-        $all_chapter = Chapter::with('truyen')->orderBy('id','ASC')->where('truyen_id',$truyen->truyen_id)->get();
+        $all_chapter = Chapter::with('truyen')->orderBy('id','DESC')->where('truyen_id',$truyen->truyen_id)->get();
         return view('pages.chapter')->with(compact('danhmuc','truyen','chapter','all_chapter'));
     }
 
