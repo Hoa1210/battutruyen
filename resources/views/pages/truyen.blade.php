@@ -11,7 +11,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-3">
-                <img src="{{asset('uploads/truyen/di-gioi-kham-liem-su3.jpg')}}" class="img-fluid" alt="">
+                <img src="{{asset('uploads/truyen/'.$truyen->hinhanh)}}" class="img-fluid" alt="">
             </div>
             <div class="col-md-9">
                 <ul style="list-style: none;">
@@ -20,7 +20,11 @@
                     <li>Số chapter: 200</li>
                     <li>Só lượt xem: 20000000000</li>
                     <li><a href="#">Xem mục lục</a></li>
-                    <li><a href="{{url('xem-chapter/'.$chapter_dau)}}" class="btn btn-primary">Đọc online</a></li>
+                    @if($chapter_dau)
+                    <li><a href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}" class="btn btn-primary">Đọc online</a></li>
+                    @else
+                    <li><a href="#" class="btn btn-danger">Đang cập nhật</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -35,7 +39,7 @@
             @endphp
             @if($mucluc > 0)
                 @foreach ($chapter as $key => $chap)
-                <li><a href="{{url('xem_chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</a></li>
+                <li><a href="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</a></li>
                 @endforeach
             @else
             <li>Muc luc dang cap nhat</li>
@@ -51,7 +55,6 @@
                     <img src="{{asset('uploads/truyen/'.$truyen->hinhanh)}}" class="card-img-top" width="250px" height="333px" alt="...">
                     <div class="card-body">
                         <h4 class="card-title">{{$truyen->tentruyen}}</h4>
-                        <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a href="{{url('doc-truyen/'.$truyen->slug_truyen)}}" class="btn btn-sm btn-primary">Đọc ngay</a>
