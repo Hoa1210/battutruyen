@@ -9,23 +9,31 @@
 </nav>
 <div class="row">
     <div class="col-md-12">
-
         <h4>{{$chapter->truyen->tentruyen}}</h4>
         <p>{{$chapter->tieude}}</p>
         <div class="col-md-5">
             <div class="form-group">
-                <label for="exampleInputEmail1">Chon chuong</label>
+                <a href="" class="btn btn-success"><</a>
                 <select name="select-chapter" class="custom-select select-chapter">
                     @foreach($all_chapter as $key=>$chap)
-                    <option  value="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</option>
+                    <option value="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</option>
                     @endforeach
                 </select>
+                <a href="" class="btn btn-success">></a>
             </div>
         </div>
         <div class="noidungchuong">
             {!! $chapter->noidung !!}
         </div>
-
+        <div class="form-group">
+        <a href="" class="btn btn-success"><</a>
+            <select name="select-chapter" class="custom-select select-chapter">
+                @foreach($all_chapter as $key=>$chap)
+                <option value="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</option>
+                @endforeach
+            </select>
+        <a href="" class="btn btn-success">></a>
+        </div>
     </div>
 
 

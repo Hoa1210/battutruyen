@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nội dung chapter</label>
-                            <textarea name="noidung" class="form-control" value="{{old('noidung')}}"></textarea>
+                            <textarea name="noidung"  class="form-control" value="{{old('noidung')}}"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Truyện</label>
