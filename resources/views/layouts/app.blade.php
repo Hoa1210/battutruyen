@@ -117,6 +117,7 @@
     <script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
     <script type="text/javascript">
         CKEDITOR.replace('noidung');
+
     </script>
 </body>
 

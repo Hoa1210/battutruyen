@@ -36,32 +36,8 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Trang chủ</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Danh mục
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @foreach($danhmuc as $key=>$value)
-                                <li><a class="dropdown-item" href="{{url('danh-muc/'.$value->slug_danhmuc)}}">{{$value->tendanhmuc}}</a></li>
-                                @endforeach
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Thể loại
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{route('truyen.create')}}">Thêm truyện</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Charter
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{route('chapter.create')}}">Thêm chapter</a></li>
-                                <li><a class="dropdown-item" href="{{route('chapter.index')}}">Danh sách chapter</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url('/admin') }}">Trang Admin</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -98,7 +74,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    
     <script type="text/javascript">
         $('.owl-carousel').owlCarousel({
             loop: true,

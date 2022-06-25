@@ -24,7 +24,7 @@ class IndexContronller extends Controller
     public function doctruyen($slug){
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
         $truyen = Truyen::with('danhmuctruyen')->where('slug_truyen',$slug)->where('trangthai',0)->first();
-        $chapter  = Chapter::with('truyen')->orderBy('id','DESC')->where('truyen_id',$truyen->id)->get();
+        $chapter  = Chapter::with('truyen')->orderBy('id','ASC')->where('truyen_id',$truyen->id)->get();
         $chapter_dau  = Chapter::with('truyen')->orderBy('id','DESC')->where('truyen_id',$truyen->id)->first();
        
         $cungdanhmuc = Truyen::with('danhmuctruyen')->where('danhmuc_id',$truyen->danhmuctruyen->id)->whereNotIn('id',[$truyen->id])->get();
@@ -35,8 +35,14 @@ class IndexContronller extends Controller
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
         $truyen = Chapter::where('slug_chapter',$slug)->first();
         $chapter = Chapter::with('truyen')->where('slug_chapter',$slug)->where('truyen_id',$truyen->truyen_id)->first();
-        $all_chapter = Chapter::with('truyen')->orderBy('id','DESC')->where('truyen_id',$truyen->truyen_id)->get();
-        return view('pages.chapter')->with(compact('danhmuc','truyen','chapter','all_chapter'));
+        $all_chapter = Chapter::with('truyen')->orderBy('id','ASC')->where('truyen_id',$truyen->truyen_id)->get();
+
+        $next_chapter = Chapter::where('truyen_id',$truyen->truyen_id)->where('id','>',$chapter->id)->min('slug_chapter');
+        $previous_chapter  = Chapter::where('truyen_id',$truyen->truyen_id)->where('id','<',$chapter->id)->max('slug_chapter');
+        
+        $max_id =Chapter::where('truyen_id',$truyen->truyen_id)->orderBy('id','DESC')->first();
+        $min_id =Chapter::where('truyen_id',$truyen->truyen_id)->orderBy('id','ASC')->first();
+        return view('pages.chapter')->with(compact('danhmuc','truyen','chapter','all_chapter','next_chapter','previous_chapter','max_id','min_id'));
     }
 
 }

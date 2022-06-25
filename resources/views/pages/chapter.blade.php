@@ -12,14 +12,23 @@
         <h4>{{$chapter->truyen->tentruyen}}</h4>
         <p>{{$chapter->tieude}}</p>
         <div class="col-md-5">
+
+        <style>
+            .isDisanled{
+                color: currentColor;
+                pointer-events: none;
+                opacity: 0.5;
+                text-decoration: none;
+            }
+        </style>
             <div class="form-group">
-                <a href="" class="btn btn-success"><</a>
+                <a href="{{url('xem-chapter/'.$previous_chapter)}}" class="btn btn-success {{$chapter->id==$min_id->id ? 'isDisanled' : ''}}"><</a>
                 <select name="select-chapter" class="custom-select select-chapter">
                     @foreach($all_chapter as $key=>$chap)
                     <option value="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</option>
                     @endforeach
                 </select>
-                <a href="" class="btn btn-success">></a>
+                <a href="{{url('xem-chapter/'.$next_chapter)}}"  class="btn btn-success {{$chapter->id==$max_id->id ? 'isDisanled' : ''}}">></a>
             </div>
         </div>
         <div class="noidungchuong">
