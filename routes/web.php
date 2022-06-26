@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DanhmucController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexContronller;
+use App\Http\Controllers\TheloaiController;
 use App\Http\Controllers\TruyenController;
 
 /*
@@ -36,3 +37,4 @@ Route::get('/admin', [HomeController::class, 'index'])->name('admin');
 Route::resource('admin/danhmuc', DanhmucController::class);
 Route::resource('admin/truyen', TruyenController::class);
 Route::resource('admin/chapter', ChapterController::class);
+Route::resource('admin/theloai', TheloaiController::class);

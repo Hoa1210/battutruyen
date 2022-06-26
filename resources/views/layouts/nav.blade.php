@@ -11,6 +11,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('admin') }}">Admin</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Web khách</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Quản lý danh mục
@@ -36,6 +39,15 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{route('chapter.create')}}">Thêm chapter</a></li>
                             <li><a class="dropdown-item" href="{{route('chapter.index')}}">Danh sách chapter</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Thể loại
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{route('theloai.create')}}">Thêm thể loại</a></li>
+                            <li><a class="dropdown-item" href="{{route('theloai.index')}}">Danh sách thể loại</a></li>
                         </ul>
                     </li>
                 </ul>
