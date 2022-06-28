@@ -29,6 +29,7 @@ Route::get('/doc-truyen/{slug}', [IndexContronller::class, 'doctruyen']);
 
 Route::get('/xem-chapter/{slug}', [IndexContronller::class, 'xemchapter']);
 
+Route::get('/the-loai/{slug}', [IndexContronller::class, 'theloai']);
 
 Auth::routes();
 

@@ -51,6 +51,14 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="exampleFormControlSelect1">Thể loại truyện</label>
+                            <select class="form-control" name="theloai_id" id="exampleFormControlSelect1">
+                                @foreach($theloai as $key=>$value)
+                                <option {{$value->id == $truyen->theloai_id ? "selected" : ""}} value="{{$value->id}}">{{$value->tentheloai}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Hình ảnh</label>
                             <input type="file" class="form-control" name="hinhanh">
                             <img src="{{asset('uploads/truyen/'.$truyen->hinhanh)}}" height="300" width="200">

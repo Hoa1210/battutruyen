@@ -24,6 +24,7 @@
                                 <th scope="col">Tác giả</th>
                                 <th scope="col">Mô tả</th>
                                 <th scope="col">Danh mục</th>
+                                <th scope="col">Thể loại</th>
                                 <th scope="col">Trạng thái</th>
                                 <th scope="col">Quản lý</th>
                             </tr>
@@ -38,6 +39,7 @@
                                 <td>{{$truyen->tacgia}}</td>
                                 <td>{{$truyen->mota}}</td>
                                 <td>{{$truyen->danhmuctruyen->tendanhmuc}}</td>
+                                <td>{{$truyen->theloai->tentheloai}}</td>
                                 <td>
                                     @if($truyen->trangthai == 1)
                                     <span style="color:red;">Không kích hoạt</span>

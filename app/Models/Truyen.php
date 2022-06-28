@@ -10,7 +10,7 @@ class Truyen extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'tentuyen','mota','slug_truyen','trangthai','hinhanh','danhmuc_id','tacgia'
+        'tentuyen','mota','slug_truyen','trangthai','hinhanh','danhmuc_id','theloai_id','tacgia'
     ];
     protected $primaryKey = 'id';
     protected $table = 'truyen';
