@@ -2,9 +2,9 @@
 @section('content')
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Library</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Data</li>
+        <li class="breadcrumb-item"><a href="{{url('/')}}">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="{{url('danh-muc/'.$truyen->danhmuctruyen->slug_danhmuc)}}">{{$truyen->danhmuctruyen->tendanhmuc}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{$truyen->tentruyen}}</li>
     </ol>
 </nav>
 <div class="row">
@@ -15,10 +15,12 @@
             </div>
             <div class="col-md-9">
                 <ul style="list-style: none;">
+                    <li>Tên truyện: {{$truyen->tentruyen}}</li>
                     <li>Tác giả: {{$truyen->tacgia}}</li>
-                    <li>Thể loại: Trinh thám</li>
+                    <li>Danh mục: <a href="{{url('danh-muc/'.$truyen->danhmuctruyen->slug_danhmuc)}}">{{$truyen->danhmuctruyen->tendanhmuc}}</a></li>
+                    <li>Thể loại: <a href="{{url('the-loai/'.$truyen->theloai->slug_theloai)}}">{{$truyen->theloai->tentheloai}}</a></li>
                     <li>Số chapter: 200</li>
-                    <li>Só lượt xem: 20000000000</li>
+                    <li>Số lượt xem: 20000000000</li>
                     <li><a href="#">Xem mục lục</a></li>
                     @if($chapter_dau)
                     <li><a href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}" class="btn btn-primary">Đọc online</a></li>
@@ -38,9 +40,9 @@
             $mucluc = count($chapter);
             @endphp
             @if($mucluc > 0)
-                @foreach ($chapter as $key => $chap)
-                <li><a href="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</a></li>
-                @endforeach
+            @foreach ($chapter as $key => $chap)
+            <li><a href="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</a></li>
+            @endforeach
             @else
             <li>Muc luc dang cap nhat</li>
             @endif

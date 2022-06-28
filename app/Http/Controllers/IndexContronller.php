@@ -27,18 +27,22 @@ class IndexContronller extends Controller
     public function doctruyen($slug){
         $theloai = Theloai::orderBy('id','DESC')->get();
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
-        $truyen = Truyen::with('danhmuctruyen')->where('slug_truyen',$slug)->where('trangthai',0)->first();
+        $truyen = Truyen::with('danhmuctruyen','theloai')->where('slug_truyen',$slug)->where('trangthai',0)->first();
         $chapter  = Chapter::with('truyen')->orderBy('id','ASC')->where('truyen_id',$truyen->id)->get();
-        $chapter_dau  = Chapter::with('truyen')->orderBy('id','DESC')->where('truyen_id',$truyen->id)->first();
+        $chapter_dau  = Chapter::with('truyen')->orderBy('id','ASC')->where('truyen_id',$truyen->id)->first();
        
-        $cungdanhmuc = Truyen::with('danhmuctruyen')->where('danhmuc_id',$truyen->danhmuctruyen->id)->whereNotIn('id',[$truyen->id])->get();
+        $cungdanhmuc = Truyen::with('danhmuctruyen','theloai')->where('danhmuc_id',$truyen->danhmuctruyen->id)->whereNotIn('id',[$truyen->id])->get();
         return view('pages.truyen')->with(compact('theloai','danhmuc','truyen','chapter','chapter_dau','cungdanhmuc'));
     }
 
     public function xemchapter($slug){
         $theloai = Theloai::orderBy('id','DESC')->get();
         $danhmuc = DanhmucTruyen::orderBy('id','DESC')->get();
+        
         $truyen = Chapter::where('slug_chapter',$slug)->first();
+        // brewcrumb
+        $truyen_breadcrumb = Truyen::with('danhmuctruyen','theloai')->where('id',$truyen->truyen_id)->first();
+        // end brewrumb
         $chapter = Chapter::with('truyen')->where('slug_chapter',$slug)->where('truyen_id',$truyen->truyen_id)->first();
         $all_chapter = Chapter::with('truyen')->orderBy('id','ASC')->where('truyen_id',$truyen->truyen_id)->get();
 
@@ -47,7 +51,7 @@ class IndexContronller extends Controller
         
         $max_id =Chapter::where('truyen_id',$truyen->truyen_id)->orderBy('id','DESC')->first();
         $min_id =Chapter::where('truyen_id',$truyen->truyen_id)->orderBy('id','ASC')->first();
-        return view('pages.chapter')->with(compact('theloai','danhmuc','truyen','chapter','all_chapter','next_chapter','previous_chapter','max_id','min_id'));
+        return view('pages.chapter')->with(compact('theloai','danhmuc','truyen','truyen_breadcrumb','chapter','all_chapter','next_chapter','previous_chapter','max_id','min_id'));
     }
 
     public function theloai($slug) {

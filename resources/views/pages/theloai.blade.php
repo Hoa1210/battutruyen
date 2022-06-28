@@ -29,7 +29,7 @@
                         <h4 class="card-title">{{$truyen->tentruyen}}</h4>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="{{url('doc-truyen/'.$truyen->id)}}" class="btn btn-sm btn-primary">Đọc ngay</a>
+                                <a href="{{url('doc-truyen/'.$truyen->slug_truyen)}}" class="btn btn-sm btn-primary">Đọc ngay</a>
                                 <a class="btn btn-sm btn-outline-secondary"><i class="fas fa-eye"></i> 5555</a>
                             </div>
                             <small class="text-muted">9 mins trước</small>
