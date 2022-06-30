@@ -61,9 +61,11 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                    <form class="d-flex" method="GET" action="{{url('tim-kiem')}}">
+                        
+                        <input class="form-control me-2" type="search" name="tukhoa" placeholder="Tìm kiếm tác giả, truyện ..." aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Tìm </button>
+
                     </form>
                 </div>
             </div>

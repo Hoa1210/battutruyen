@@ -31,6 +31,8 @@ Route::get('/xem-chapter/{slug}', [IndexContronller::class, 'xemchapter']);
 
 Route::get('/the-loai/{slug}', [IndexContronller::class, 'theloai']);
 
+Route::get('/tim-kiem', [IndexContronller::class, 'timkiem']);
+
 Auth::routes();
 
 Route::get('/admin', [HomeController::class, 'index'])->name('admin');
