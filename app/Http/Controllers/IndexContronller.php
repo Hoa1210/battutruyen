@@ -10,6 +10,24 @@ use App\Models\Truyen;
 
 class IndexContronller extends Controller
 {
+
+    public function timkiem_ajax(Request $request){
+        $data = $request->all();
+
+        if($data['keywords']){
+            $truyen = Truyen::where('trangthai',0)->where('tentruyen','LIKE','%'.$data['keywords'].'%')->get();
+
+            $output = '<ul class="dropdown-menu" style="display:block;>';
+
+            foreach($truyen as $key => $value){
+                $output .= '<li class="li_search_ajax"><a href="#">'.$value->tentruyen.'</a></li>';
+            }
+
+            $output .= '</ul>';
+            echo $output;
+        }
+
+    }
     public function home(){
         $theloai = Theloai::orderBy('id','DESC')->get();
         $slide_truyen = Truyen::orderBy('id','DESC')->where('trangthai',0)->take(8)->get();
@@ -77,7 +95,7 @@ class IndexContronller extends Controller
         $slide_truyen = Truyen::orderBy('id','DESC')->where('trangthai',0)->take(8)->get();
 
         $tukhoa = $_GET['tukhoa'];
-        $truyen = Truyen::with('danhmuctruyen','theloai')->where('tentruyen', 'LIKE', '%'.$tukhoa.'%')->orWhere('tomtat', 'LIKE', '%'.$tukhoa.'%')->orWhere('tacgia', 'LIKE', '%'.$tukhoa.'%')->get();
+        $truyen = Truyen::with('danhmuctruyen','theloai')->where('tentruyen', 'LIKE', '%'.$tukhoa.'%')->orWhere('mota', 'LIKE', '%'.$tukhoa.'%')->orWhere('tacgia', 'LIKE', '%'.$tukhoa.'%')->get();
 
         return view('pages.timkiem')->with(compact('theloai','danhmuc','slide_truyen','tukhoa','truyen'));
     }

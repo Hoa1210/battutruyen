@@ -61,11 +61,11 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="d-flex" method="GET" action="{{url('tim-kiem')}}">
-                        
-                        <input class="form-control me-2" type="search" name="tukhoa" placeholder="Tìm kiếm tác giả, truyện ..." aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Tìm </button>
-
+                    <form autocomplete="off" class="d-flex" method="GET" action="{{url('tim-kiem')}}">
+                        @csrf
+                        <input class="form-control me-2" type="search" name="tukhoa" id="keywords" placeholder="Tìm kiếm tác giả, truyện ..."  aria-label="Search">
+                        <div id="search_ajax"></div>
+                        <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
                     </form>
                 </div>
             </div>
@@ -84,7 +84,7 @@
         <footer class="text-muted">
             <div class="container">
                 <p class="float-right">
-                    <a href="#">Back to top</a>
+                    <a href="#">^</a>
                 </p>
                 <p>Album example is © Bootstrap, but please download and customize it for yourself!</p>
                 <p>New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/4.6/getting-started/introduction/">getting started guide</a>.</p>
@@ -96,16 +96,41 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <script type="text/javascript">
+        $('#keywords').keyup(function(){
+            var keywords = $(this).val();
+
+            if(keywords != ''){
+                var _token = $('input[name="_token"]').val();
+
+                $.ajax({
+                    url:"{{url('/timkiem-ajax')}}",
+                    method:"POST",
+                    data:{keywords: keywords,_token:_token},
+                    success:function(data){
+                        $('#search_ajax').fadeIn();
+                        $('#search_ajax').html(data);
+                    }
+                });
+            }else{
+                $('#search_ajax').fadeOut();
+            }
+        });
+
+        $(document).on('click','.li_search_ajax', function(){
+            $('#keywords').val($(this).text());
+            $('#search_ajax').fadeOut();
+        });
+    </script>
+    <!-- <script type="text/javascript">
         $('.owl-carousel').owlCarousel({
             loop: true,
             margin: 10,
             dot: true,
-            // nav: true,
+            nav: true,
             responsive: {
                 0: {
                     items: 1
@@ -118,7 +143,7 @@
                 }
             }
         });
-    </script>
+    </script> -->
     <script>
         $('.select-chapter').on('change', function() {
             var url = $(this).val();

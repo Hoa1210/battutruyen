@@ -33,6 +33,7 @@ Route::get('/the-loai/{slug}', [IndexContronller::class, 'theloai']);
 
 Route::get('/tim-kiem', [IndexContronller::class, 'timkiem']);
 
+Route::post('/timkiem-ajax', [IndexContronller::class, 'timkiem_ajax']);
 Auth::routes();
 
 Route::get('/admin', [HomeController::class, 'index'])->name('admin');
