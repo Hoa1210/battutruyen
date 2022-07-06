@@ -63,7 +63,7 @@
                     </ul>
                     <form autocomplete="off" class="d-flex" method="GET" action="{{url('tim-kiem')}}">
                         @csrf
-                        <input class="form-control me-2" type="search" name="tukhoa" id="keywords" placeholder="Tìm kiếm tác giả, truyện ..."  aria-label="Search">
+                        <input class="form-control me-2" type="search" name="tukhoa" id="keywords" placeholder="Tìm kiếm tác giả, truyện ..." aria-label="Search">
                         <div id="search_ajax"></div>
                         <button class="btn btn-outline-success" type="submit">Tìm kiếm</button>
                     </form>
@@ -95,32 +95,36 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-        $('#keywords').keyup(function(){
-            var keywords = $(this).val();
+        var keyup = $('#keywords').keyup(function() {
+            let keywords = $(this).val();
 
-            if(keywords != ''){
-                var _token = $('input[name="_token"]').val();
+            if (keywords != null) {
+                let _token = $('input[name="_token"]').val();
 
                 $.ajax({
-                    url:"{{url('/timkiem-ajax')}}",
-                    method:"POST",
-                    data:{keywords: keywords,_token:_token},
-                    success:function(data){
-                        $('#search_ajax').fadeIn();
+                    url: "{{url('/timkiem-ajax')}}",
+                    method: "POST",
+                    data: {
+                        keywords: keywords,
+                        _token: _token
+                    },
+                    success: function(data) {
+                        $("#search_ajax").fadeIn();
                         $('#search_ajax').html(data);
                     }
                 });
-            }else{
-                $('#search_ajax').fadeOut();
+            } else {
+                $("#search_ajax").fadeOut();
             }
         });
 
-        $(document).on('click','.li_search_ajax', function(){
+        $(document).on('click', '.li_search_ajax', function() {
             $('#keywords').val($(this).text());
             $('#search_ajax').fadeOut();
         });
@@ -145,8 +149,8 @@
         });
     </script> -->
     <script>
-        $('.select-chapter').on('change', function() {
-            var url = $(this).val();
+        $(".select-chapter").on('change', function() {
+            let url = $(this).val();
             if (url) {
                 window.location = url;
             } else {
@@ -157,11 +161,17 @@
         current_chapter();
 
         function current_chapter() {
-            var url = window.location.href;
+            const url = window.location.href;
             $('.select-chapter').find('option[value="' + url + '"]').attr("selected", true);
         }
     </script>
-
+    <!-- <script>
+        $(function() {
+            $('.tag-truyen').on('click', function() {
+                return false;
+            });
+        });
+    </script> -->
 </body>
 
 </html>

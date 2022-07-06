@@ -34,6 +34,8 @@ Route::get('/the-loai/{slug}', [IndexContronller::class, 'theloai']);
 Route::get('/tim-kiem', [IndexContronller::class, 'timkiem']);
 
 Route::post('/timkiem-ajax', [IndexContronller::class, 'timkiem_ajax']);
+
+Route::get('/tag/{tag}', [IndexContronller::class, 'tag']);
 Auth::routes();
 
 Route::get('/admin', [HomeController::class, 'index'])->name('admin');
